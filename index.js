@@ -32,16 +32,15 @@ cron.schedule("* */3 * * *", function () {
         dataUserList = data.data.user.followers.list;
         endCursorr += 50;
 
-        var userList = dataUserList;
+        var userList  = dataUserList;
 
-        User.collection.insert(userList, function (err, docs) {
+        User.collection.insertMany(userList,  function (err, docs) {
             if (err) {
                 return console.error(err);
             } else {
                 console.log("Data saved successfully");
             }
-        })
-
+        });
     });
 
     if (shell.exec("dir").code !== 0) {
